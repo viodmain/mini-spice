@@ -1,0 +1,7 @@
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.exe
+mini-spice
