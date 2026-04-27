@@ -1,0 +1,11 @@
+RC Transient Response
+* RC circuit transient response to step input
+V1 in 0 PULSE(0 5 0 1u 1u 1m 2m)
+R1 in out 1k
+C1 out 0 1u
+
+* Analysis
+.op
+.tran 10u 5m
+
+.end
