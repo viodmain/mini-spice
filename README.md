@@ -2,6 +2,8 @@
 
 A minimal SPICE circuit simulator based on ngspice-45 architecture.
 
+！！！The code was entirely generated using Qwen 3.5-plus.！！！
+
 ## Features
 
 ### Supported Devices
