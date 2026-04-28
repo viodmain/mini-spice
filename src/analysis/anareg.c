@@ -1,5 +1,6 @@
 /*
  * anareg.c - Analysis registration system
+ * Registers all analysis types for the simulator
  */
 #include "analysis.h"
 #include <stdio.h>
@@ -10,6 +11,9 @@ extern const AnalysisOps *dcop_get_ops(void);
 extern const AnalysisOps *dcsweep_get_ops(void);
 extern const AnalysisOps *acan_get_ops(void);
 extern const AnalysisOps *dctran_get_ops(void);
+extern const AnalysisOps *noise_get_ops(void);
+extern const AnalysisOps *fourier_get_ops(void);
+extern const AnalysisOps *sens_get_ops(void);
 
 /* Analysis registry */
 static const AnalysisOps *analysis_registry[NUM_ANALYSES];
@@ -19,7 +23,7 @@ int analysis_register(const AnalysisOps *ops)
 {
     if (ops->type >= NUM_ANALYSES)
         return E_TROUBLE;
-    
+
     analysis_registry[ops->type] = ops;
     return OK;
 }
@@ -45,11 +49,17 @@ const AnalysisOps *analysis_get_ops_by_name(const char *name)
 /* Initialize all analyses */
 int analysis_init_all(void)
 {
+    /* Register basic analyses */
     analysis_register(dcop_get_ops());
     analysis_register(dcsweep_get_ops());
     analysis_register(acan_get_ops());
     analysis_register(dctran_get_ops());
-    
+
+    /* Register advanced analyses */
+    analysis_register(noise_get_ops());
+    analysis_register(fourier_get_ops());
+    analysis_register(sens_get_ops());
+
     return OK;
 }
 
@@ -62,20 +72,20 @@ int analysis_run_all(Circuit *ckt)
             fprintf(stderr, "Warning: no operations for analysis type %d\n", ana->params.type);
             continue;
         }
-        
+
         /* Initialize */
         if (ops->init)
             ops->init(ana, ckt);
-        
+
         /* Run */
         if (ops->run)
             ops->run(ana, ckt);
-        
+
         /* Cleanup */
         if (ops->cleanup)
             ops->cleanup(ana, ckt);
     }
-    
+
     return OK;
 }
 
@@ -85,13 +95,13 @@ int analysis_run(Analysis *analysis, Circuit *ckt)
     const AnalysisOps *ops = analysis_get_ops(analysis->params.type);
     if (ops == NULL)
         return E_NOTFOUND;
-    
+
     if (ops->init)
         ops->init(analysis, ckt);
     if (ops->run)
         ops->run(analysis, ckt);
     if (ops->cleanup)
         ops->cleanup(analysis, ckt);
-    
+
     return OK;
 }

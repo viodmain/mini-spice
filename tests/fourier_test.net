@@ -1,0 +1,11 @@
+* Test: Fourier analysis
+* Tests .FOUR command for harmonic distortion analysis
+V1 in 0 SIN(2.5 2.5 1k)
+R1 in out 1k
+D1 out 0 D1N4148
+
+.MODEL D1N4148 D(IS=2.52n N=1.752)
+
+.TRAN 1u 5m
+.FOUR 1k V(out) 9
+.END

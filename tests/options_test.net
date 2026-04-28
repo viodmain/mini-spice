@@ -1,0 +1,10 @@
+* Test: Simulation options
+* Tests .OPTIONS command
+V1 in 0 DC 10
+R1 in out 1k
+R2 out 0 1k
+
+.OPTIONS abstol=1e-12 vntol=1e-6 reltol=0.001 maxiter=50
+
+.OP
+.END

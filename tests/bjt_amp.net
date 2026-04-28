@@ -1,0 +1,12 @@
+* Test: BJT amplifier
+* Tests NPN BJT with DC operating point analysis
+Vcc collector 0 DC 10
+Vb base 0 DC 0.7
+Rc collector 0 1k
+Re emitter 0 100
+Q1 collector base emitter Q2N2222
+
+.MODEL Q2N2222 NPN(IS=1e-14 BF=100 NF=1.0)
+
+.OP
+.END

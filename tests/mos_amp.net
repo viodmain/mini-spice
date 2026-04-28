@@ -1,0 +1,12 @@
+* Test: MOSFET amplifier
+* Tests NMOS transistor with DC operating point analysis
+Vdd drain 0 DC 10
+Vg gate 0 DC 2.5
+Rd drain 0 1k
+Rs source 0 500
+M1 drain gate source 0 NMOS1 W=10u L=1u
+
+.MODEL NMOS1 NMOS(KP=100u VTO=0.7 LAMBDA=0.01)
+
+.OP
+.END

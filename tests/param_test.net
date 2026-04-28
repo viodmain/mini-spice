@@ -1,0 +1,11 @@
+* Test: Parametric analysis with .PARAM
+* Tests parameter definition and usage
+.PARAM Rval=1k Cval=100n
+
+V1 in 0 DC 5
+R1 in out {Rval}
+C1 out 0 {Cval}
+
+.OP
+.TRAN 10u 1m
+.END

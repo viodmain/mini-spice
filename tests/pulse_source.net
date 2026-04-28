@@ -1,0 +1,8 @@
+* Test: PULSE waveform source
+* Tests pulse voltage source with transient analysis
+V1 in 0 PULSE(0 5 1m 10u 10u 1m 4m)
+R1 in out 1k
+C1 out 0 1u
+
+.TRAN 10u 10m
+.END

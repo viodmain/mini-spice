@@ -1,6 +1,6 @@
 # Makefile for mini-spice
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 -std=c99 -I./include
+CFLAGS = -Wall -Wextra -O2 -std=gnu99 -I./include
 LDFLAGS = -lm
 
 # Source directories
@@ -24,11 +24,19 @@ DEVICE_SRCS = $(SRC_DEVICES)/res.c \
               $(SRC_DEVICES)/cccs.c \
               $(SRC_DEVICES)/ccvs.c \
               $(SRC_DEVICES)/dio.c \
+              $(SRC_DEVICES)/bjt.c \
+              $(SRC_DEVICES)/mos.c \
+              $(SRC_DEVICES)/behsrchsrc.c \
+              $(SRC_DEVICES)/switch.c \
+              $(SRC_DEVICES)/tline.c \
               $(SRC_DEVICES)/devreg.c
 ANALYSIS_SRCS = $(SRC_ANALYSIS)/dcop.c \
                 $(SRC_ANALYSIS)/dcsweep.c \
                 $(SRC_ANALYSIS)/acan.c \
                 $(SRC_ANALYSIS)/dctran.c \
+                $(SRC_ANALYSIS)/noise.c \
+                $(SRC_ANALYSIS)/fourier.c \
+                $(SRC_ANALYSIS)/sens.c \
                 $(SRC_ANALYSIS)/anareg.c
 MATH_SRCS = $(SRC_MATH)/sparse.c
 OUTPUT_SRCS = $(SRC_OUTPUT)/output.c

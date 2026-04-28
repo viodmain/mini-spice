@@ -1,0 +1,8 @@
+* Test: SIN waveform source
+* Tests sinusoidal voltage source with transient analysis
+V1 in 0 SIN(0 1 1k 0 0 0)
+R1 in out 1k
+C1 out 0 100n
+
+.TRAN 10u 5m
+.END

@@ -1,0 +1,8 @@
+* Test: Sensitivity analysis
+* Tests .SENS command for DC sensitivity
+V1 in 0 DC 10
+R1 in out 1k
+R2 out 0 2k
+
+.SENS V(out)
+.END
